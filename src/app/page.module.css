@@ -1,0 +1,42 @@
+.hero {
+  /* Высота 768px из макета или на весь экран */
+  height: calc(100vh - 72px);
+  background:
+    linear-gradient(rgba(16, 24, 40, 0.4), rgba(16, 24, 40, 0.4)),
+    url("/hero-bg.jpg") no-repeat center center / cover;
+  display: flex;
+  align-items: flex-start; /* Прижимаем к верху для Y: 260 */
+}
+
+.content {
+  /* Расчет: Y: 260px (Figma) - 72px (Header) = 188px */
+  margin-top: 188px;
+
+  /* Отступ слева X: 64px */
+  margin-left: 64px;
+
+  /* Точные размеры текстового блока */
+  max-width: 571px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Кнопка и текст строго слева */
+}
+
+.title {
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 1.1;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.25;
+  color: #ffffff;
+
+  /* Расстояние до кнопки (Gap: 40) */
+  margin-bottom: 40px;
+}

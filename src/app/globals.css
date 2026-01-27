@@ -1,0 +1,85 @@
+/* Подключение шрифта Inter (стандарт для Next.js) */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+:root {
+  /* Цвета из твоего макета и ТЗ */
+  --main-color: #101828; /* Темный текст */
+  --secondary-color: #475467; /* Серый текст */
+  --accent-color: #e44848; /* Красный (кнопки, активные ссылки) */
+  --button-hover: #d84343; /* Красный темнее для ховера */
+  --bg-color: #f7f7f7; /* Фон секций */
+  --white: #ffffff; /* Чистый белый */
+  --inputs-bg: #f2f4f7; /* Фон полей ввода */
+  --border-color: #dadde1; /* Цвет линий и границ */
+
+  /* Ширина из Figma */
+  --desktop-width: 1440px;
+}
+
+/* Базовый сброс стилей (Reset) */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: var(--main-color);
+  background-color: var(--white);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Контейнер для центровки контента (согласно макету 1440px) */
+.container {
+  max-width: var(--desktop-width);
+  margin: 0 auto;
+  padding: 0 64px; /* Боковые отступы из макета */
+}
+
+/* Стили для ссылок */
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+
+/* Сброс списков */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Базовая кнопка "View Now" из макета */
+.button-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 40px;
+  background-color: var(--accent-color);
+  color: var(--white);
+  border-radius: 200px; /* Скругление как на кнопке в макете */
+  font-weight: 500;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-primary:hover {
+  background-color: var(--button-hover);
+}
+
+/* Картинки */
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

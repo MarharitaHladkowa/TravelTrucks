@@ -1,0 +1,70 @@
+.catalogContainer {
+  padding: 40px 64px; /* Отступы по ТЗ и макету */
+  display: flex;
+  flex-direction: column;
+}
+
+.catalogLayout {
+  display: flex;
+  gap: 64px; /* Расстояние между фильтрами и списком по макету */
+  align-items: flex-start;
+}
+
+/* Левая колонка - 360px по макету */
+.sidebar {
+  width: 360px;
+  flex-shrink: 0;
+}
+
+/* Правая колонка - Список карточек */
+.content {
+  flex-grow: 1;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px; /* Расстояние между карточками */
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.loadMoreBtn {
+  display: block;
+  margin: 40px auto;
+  padding: 16px 32px;
+  background-color: transparent;
+  border: 1px solid #dadde1;
+  border-radius: 200px;
+  font-weight: 500;
+  font-size: 16px;
+  color: #101828;
+  cursor: pointer; /* Обязательно по ТЗ */
+  transition: border-color 0.3s;
+}
+
+.loadMoreBtn:hover {
+  border-color: #e44848;
+}
+.filterGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.filterItem {
+  border: 1px solid #dadde1;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 12px;
+}

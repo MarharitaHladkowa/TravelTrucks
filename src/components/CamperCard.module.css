@@ -1,0 +1,97 @@
+.card {
+  display: flex;
+  gap: 24px;
+  padding: 24px;
+  border: 1px solid #dadde1;
+  border-radius: 20px;
+  background-color: #fff;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 290px;
+  height: 310px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.info {
+  flex-grow: 1;
+}
+
+.header {
+  display: flex;
+  justify-content: space-バランス;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: 600;
+  color: #101828;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 300px;
+}
+
+.priceWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 600;
+  color: #101828;
+}
+
+.favoriteBtn {
+  background: none;
+  border: none;
+  cursor: pointer; /* По ТЗ */
+  font-size: 24px;
+  padding: 0;
+}
+
+.meta {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  font-size: 16px;
+}
+
+.description {
+  color: #475467;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 24px;
+  /* Ограничение текста в 1 строку, как на макете */
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.categoryTag {
+  padding: 12px 18px;
+  background-color: #f2f4f7;
+  border-radius: 100px;
+  font-size: 16px;
+  font-weight: 500;
+}
