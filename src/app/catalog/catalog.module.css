@@ -1,70 +1,200 @@
 .catalogContainer {
-  padding: 40px 64px; /* Отступы по ТЗ и макету */
-  display: flex;
-  flex-direction: column;
+  max-width: 1440px; /* Фиксируем ширину всего сайта как в Figma */
+  margin: 0 auto; /* Центрируем всё содержимое */
+  padding: 40px 64px 56px;
 }
 
 .catalogLayout {
   display: flex;
-  gap: 64px; /* Расстояние между фильтрами и списком по макету */
+  gap: 64px; /* Точный отступ между фильтрами и списком */
   align-items: flex-start;
 }
 
 /* Левая колонка - 360px по макету */
+
 .sidebar {
   width: 360px;
+
   flex-shrink: 0;
 }
 
 /* Правая колонка - Список карточек */
-.content {
-  flex-grow: 1;
-}
 
 .list {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Вертикальный стек, как в Figma */
   gap: 32px; /* Расстояние между карточками */
+
+  /* ВАЖНО: это не даст карточкам растягиваться по вертикали */
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  width: 888px;
+  margin: 0;
+}
+.content {
+  /* Ширина колонки должна быть строго как у карточки */
+  width: 888px;
+  flex-shrink: 0;
 }
 
 .loader {
   display: flex;
+
   justify-content: center;
+
   align-items: center;
+
   height: 200px;
+
   font-size: 24px;
+
   font-weight: 600;
 }
 
 .loadMoreBtn {
   display: block;
-  margin: 40px auto;
+
+  margin: 40px auto 0;
+
   padding: 16px 32px;
+
   background-color: transparent;
+
   border: 1px solid #dadde1;
+
   border-radius: 200px;
+
   font-weight: 500;
+
   font-size: 16px;
+
   color: #101828;
+
   cursor: pointer; /* Обязательно по ТЗ */
+
   transition: border-color 0.3s;
 }
 
 .loadMoreBtn:hover {
   border-color: #e44848;
 }
+
 .filterGrid {
   display: grid;
+
   grid-template-columns: repeat(3, 1fr);
+
   gap: 12px;
+
   margin-top: 24px;
 }
 
 .filterItem {
   border: 1px solid #dadde1;
+
   border-radius: 12px;
+
   padding: 16px;
+
   text-align: center;
+
   cursor: pointer;
+
   font-size: 12px;
+}
+.filterSection {
+  margin-bottom: 40px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  color: rgba(16, 24, 40, 0.6);
+  font-size: 16px;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.mapIcon {
+  position: absolute;
+  left: 18px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.input {
+  width: 100%;
+  height: 56px;
+  padding: 18px 18px 18px 48px;
+  background-color: #f7f7f7;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #101828;
+  outline: none;
+}
+
+.filterTitle {
+  margin: 32px 0 24px;
+  color: #475467;
+  font-size: 16px;
+  font-weight: 500;
+}
+.sectionTitle {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(16, 24, 40, 0.1);
+  padding-top: 32px;
+  padding-bottom: 24px;
+}
+.categoriesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px 8px;
+  width: 360px;
+}
+
+.categoryItem {
+  width: 112px;
+  display: flex;
+  height: 96px;
+  border: 1px solid rgba(16, 24, 40, 0.1);
+  border-radius: 12px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 27px;
+  cursor: pointer;
+  background: #fff;
+  transition: border-color 0.3s;
+  mix-blend-mode: multiply;
+  gap: 8px;
+  align-items: center;
+}
+
+.categoryItem p {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #101828;
+  margin: 0;
+  text-align: center;
+}
+.categoryItem:hover {
+  border-color: #e44848;
+}
+.categoryItem img {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+.categoryItem.active {
+  border-color: #e44848;
 }

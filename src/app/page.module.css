@@ -10,15 +10,16 @@
 
 .content {
   /* Расчет: Y: 260px (Figma) - 72px (Header) = 188px */
-  margin-top: 188px;
+  margin-top: 260px;
 
   /* Отступ слева X: 64px */
   margin-left: 64px;
 
   /* Точные размеры текстового блока */
   max-width: 571px;
-
+  white-space: nowrap;
   display: flex;
+  max-width: none;
   flex-direction: column;
   align-items: flex-start; /* Кнопка и текст строго слева */
 }

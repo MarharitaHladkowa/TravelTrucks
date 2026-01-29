@@ -1,119 +1,166 @@
 "use client";
 
 import { useEffect } from "react";
-import { useCamperStore } from "../../store/useCamperStore";
-import { getCampers } from "../../api/campers";
+import Image from "next/image";
 import styles from "./catalog.module.css";
-import { CamperCard } from "@/src/components/CamperCard";
-import { Camper } from "@/src/types/camper";
+import { CamperCard } from "@/src/components/CamperCard/CamperCard";
+import { useFilterStore } from "@/src/store/useFilterStore";
 
-// Определяем интерфейс ответа, чтобы избежать 'any'
-interface CampersResponse {
-  items: Camper[];
-  total: number;
-}
+const EQUIPMENT = [
+  { id: "AC", label: "AC", icon: "/icons/wind.svg" },
+  { id: "automatic", label: "Automatic", icon: "/icons/auto.svg" },
+  { id: "kitchen", label: "Kitchen", icon: "/icons/cup-hot.svg" },
+  { id: "TV", label: "TV", icon: "/icons/tv.svg" },
+  { id: "bathroom", label: "Bathroom", icon: "/icons/ph_shower.svg" },
+];
+
+const VEHICLE_TYPES = [
+  { id: "van", label: "Van", icon: "/icons/bi_grid-1x2.svg" },
+  {
+    id: "fullyIntegrated",
+    label: "Fully Integrated",
+    icon: "/icons/bi_grid.svg",
+  },
+  { id: "alcove", label: "Alcove", icon: "/icons/bi_grid-3x3-gap.svg" },
+];
 
 export default function CatalogPage() {
-  const { items, setItems, isLoading, setLoading, setError, error } =
-    useCamperStore();
+  const {
+    location,
+    equipment,
+    vehicleType,
+    campers,
+    isLoading,
+    page,
+    hasMore,
+
+    setLocation,
+    toggleEquipment,
+    setVehicleType,
+
+    fetchCampers,
+    resetCampers,
+    resetPage,
+    nextPage,
+  } = useFilterStore();
 
   useEffect(() => {
-    const loadData = async () => {
-      setLoading(true);
-      try {
-        const data = await getCampers();
+    fetchCampers({ page: 1, limit: 4 });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-        // Проверяем структуру данных без использования 'any'
-        if (Array.isArray(data)) {
-          setItems(data);
-        } else if (data && typeof data === "object" && "items" in data) {
-          // Если API вернул объект { items: [], total: ... }
-          setItems((data as CampersResponse).items);
-        } else {
-          setItems([]);
-        }
-      } catch (err) {
-        // Используем переменную 'err' для логов, чтобы ESLint не ругался
-        console.error("Ошибка при загрузке данных:", err);
-        setError("Не вдалося завантажити список кемперів");
-      } finally {
-        setLoading(false);
-      }
+  const buildParams = (
+    pageNumber: number,
+  ): Record<string, string | number | boolean | undefined> => {
+    const params: Record<string, string | number | boolean | undefined> = {
+      page: pageNumber,
+      limit: 4,
+      location: location || undefined,
+      form: vehicleType || undefined,
     };
 
-    loadData();
-  }, [setItems, setLoading, setError]);
+    if (equipment.includes("AC")) params.AC = true;
+    if (equipment.includes("kitchen")) params.kitchen = true;
+    if (equipment.includes("TV")) params.TV = true;
+    if (equipment.includes("bathroom")) params.bathroom = true;
+    if (equipment.includes("automatic")) params.transmission = "automatic";
 
-  // Loader обязателен по ТЗ при асинхронных запросах
-  if (isLoading) {
-    return <div className={styles.loader}>Loading...</div>;
-  }
+    return params;
+  };
+
+  const handleSearch = async () => {
+    resetCampers();
+    resetPage();
+    await fetchCampers(buildParams(1));
+  };
+
+  const handleLoadMore = async () => {
+    nextPage();
+    await fetchCampers(buildParams(page + 1));
+  };
 
   return (
     <main className={styles.catalogContainer}>
       <div className={styles.catalogLayout}>
-        {/* Боковая панель фильтров согласно макету */}
         <aside className={styles.sidebar}>
           <div className={styles.filterSection}>
-            <label className={styles.label}>Location</label>
             <div className={styles.inputWrapper}>
+              <Image
+                src="/icons/map.svg"
+                alt="Map"
+                width={20}
+                height={20}
+                className={styles.mapIcon}
+              />
               <input
-                type="text"
-                placeholder="Kyiv, Ukraine"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                placeholder="City"
                 className={styles.input}
               />
             </div>
           </div>
-
-          <p className={styles.filterTitle}>Filters</p>
-
-          <div className={styles.filterGroup}>
-            <h3 className={styles.groupHeader}>Vehicle equipment</h3>
-            <hr className={styles.divider} />
-            <div className={styles.filterGrid}>
-              <div className={styles.filterItem}>AC</div>
-              <div className={styles.filterItem}>Automatic</div>
-              <div className={styles.filterItem}>Kitchen</div>
-              <div className={styles.filterItem}>TV</div>
-              <div className={styles.filterItem}>Bathroom</div>
-            </div>
+          <h3 className={styles.sectionTitle}>Vehicle equipment</h3>
+          <div className={styles.categoriesGrid}>
+            {EQUIPMENT.map((item) => (
+              <div
+                key={item.id}
+                className={`${styles.categoryItem} ${
+                  equipment.includes(item.id) ? styles.active : ""
+                }`}
+                onClick={() => toggleEquipment(item.id)}
+              >
+                <Image
+                  src={item.icon}
+                  alt={item.label}
+                  width={32}
+                  height={32}
+                  style={{ height: "auto" }}
+                />
+                <p>{item.label}</p>
+              </div>
+            ))}
           </div>
 
-          <div className={styles.filterGroup}>
-            <h3 className={styles.groupHeader}>Vehicle type</h3>
-            <hr className={styles.divider} />
-            <div className={styles.filterGrid}>
-              <div className={styles.filterItem}>Van</div>
-              <div className={styles.filterItem}>Fully Integrated</div>
-              <div className={styles.filterItem}>Alcove</div>
-            </div>
+          <h3 className={styles.sectionTitle}>Vehicle type</h3>
+          <div className={styles.categoriesGrid}>
+            {VEHICLE_TYPES.map((type) => (
+              <div
+                key={type.id}
+                className={`${styles.categoryItem} ${
+                  vehicleType === type.id ? styles.active : ""
+                }`}
+                onClick={() => setVehicleType(type.id)}
+              >
+                <Image
+                  src={type.icon}
+                  alt={type.label}
+                  width={32}
+                  height={32}
+                  style={{ height: "auto" }}
+                />
+                <p>{type.label}</p>
+              </div>
+            ))}
           </div>
 
-          <button
-            className="button-primary"
-            style={{ width: "173px", marginTop: "32px" }}
-          >
+          <button className={styles.searchBtn} onClick={handleSearch}>
             Search
           </button>
         </aside>
 
-        {/* Секция со списком карточек */}
         <section className={styles.content}>
-          {error ? (
-            <div className={styles.error}>{error}</div>
-          ) : items.length > 0 ? (
-            <div className={styles.list}>
-              {items.map((camper) => (
+          <div className={styles.list}>
+            {Array.isArray(campers) &&
+              campers.map((camper) => (
                 <CamperCard key={camper.id} camper={camper} />
               ))}
-            </div>
-          ) : (
-            <div className={styles.notFound}>Кемперів не знайдено</div>
-          )}
+          </div>
 
-          {/* Кнопка Load More для пагинации на бэкенде */}
-          {!isLoading && items.length > 0 && (
-            <button className={styles.loadMoreBtn}>Load More</button>
+          {isLoading && <p>Loading...</p>}
+
+          {!isLoading && hasMore && campers.length > 0 && (
+            <button onClick={handleLoadMore}>Load more</button>
           )}
         </section>
       </div>
