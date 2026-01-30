@@ -198,3 +198,56 @@
 .categoryItem.active {
   border-color: #e44848;
 }
+.searchBtn {
+  border-radius: 200px;
+  padding: 16px 60px;
+  width: 166px;
+  height: 56px;
+  background: #e44848;
+  margin-top: 40px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+.loadMoreBtn {
+  display: block;
+  margin: 40px auto 0;
+  padding: 16px 32px;
+  background-color: transparent;
+  border: 1px solid #dadde1;
+  border-radius: 200px;
+
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #101828;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+.emptyText {
+  text-align: center;
+  font-size: 18px;
+  color: #475467;
+  margin-top: 40px;
+}
+.label {
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #6c717b;
+}
+.filterTitle {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #475467;
+  margin: 40px 0 0;
+}

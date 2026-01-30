@@ -17,7 +17,7 @@ export interface Camper {
   location: string;
   description: string;
 
-  form: "van" | "fullyIntegrated" | "alcove";
+  form: "panelTruck" | "fullyIntegrated" | "alcove";
   transmission: string;
   engine: string;
 

@@ -84,6 +84,9 @@ export default function CatalogPage() {
       <div className={styles.catalogLayout}>
         <aside className={styles.sidebar}>
           <div className={styles.filterSection}>
+            <label htmlFor="location" className={styles.label}>
+              Location
+            </label>
             <div className={styles.inputWrapper}>
               <Image
                 src="/icons/map.svg"
@@ -100,6 +103,7 @@ export default function CatalogPage() {
               />
             </div>
           </div>
+          <p className={styles.filterTitle}>Filters</p>
           <h3 className={styles.sectionTitle}>Vehicle equipment</h3>
           <div className={styles.categoriesGrid}>
             {EQUIPMENT.map((item) => (
@@ -158,9 +162,14 @@ export default function CatalogPage() {
           </div>
 
           {isLoading && <p>Loading...</p>}
+          {!isLoading && campers.length === 0 && (
+            <p className={styles.emptyText}>Nothing found</p>
+          )}
 
           {!isLoading && hasMore && campers.length > 0 && (
-            <button onClick={handleLoadMore}>Load more</button>
+            <button onClick={handleLoadMore} className={styles.loadMoreBtn}>
+              Load more
+            </button>
           )}
         </section>
       </div>

@@ -78,9 +78,16 @@ export const useFilterStore = create<FilterState>()(
             hasMore: newItems.length === LIMIT,
             isLoading: false,
           });
-        } catch (error) {
-          console.error(error);
-          set({ isLoading: false });
+        } catch (error: unknown) {
+          if (axios.isAxiosError(error) && error.response?.status === 404) {
+            set({
+              campers: page === 1 ? [] : get().campers,
+              hasMore: false,
+              isLoading: false,
+            });
+          } else {
+            set({ isLoading: false });
+          }
         }
       },
     }),
