@@ -1,0 +1,319 @@
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 48px 64px;
+  color: #101828;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.meta {
+  display: flex;
+  gap: 16px;
+  color: #475467;
+  margin-top: 8px;
+}
+
+.price {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 16px 0;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin: 28px 0;
+}
+
+.gallery img {
+  height: 300px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.description {
+  margin-bottom: 60px;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #475467;
+}
+
+.layout {
+  display: flex;
+  gap: 40px;
+}
+
+.left {
+  width: 641px;
+}
+
+.right {
+  border: 1px solid #dadde1;
+  border-radius: 10px;
+  padding: 44px;
+  width: 641px;
+  min-height: 588px;
+  margin-top: 88px; /* Это опустит форму на уровень начала контента Features */
+  align-self: flex-start;
+}
+
+.tabs {
+  display: flex;
+  gap: 40px;
+  border-bottom: 1px solid #dadde1;
+  position: relative;
+  margin-bottom: 40px;
+  width: 1312px;
+  height: 48px;
+}
+
+.tabs button {
+  background: none;
+  border: none;
+  padding: 16px 0;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 10px 0 24px 0;
+  color: #101828;
+  position: relative;
+}
+
+.activeTab {
+  border-bottom: 4px solid #e44848;
+  font-weight: 600;
+}
+.activeTab::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: #e44848;
+}
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 100px 0;
+}
+
+.badge {
+  background: #f7f7f7;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 14px;
+}
+
+.reviews {
+  list-style: none;
+  padding: 0;
+}
+
+.reviewItem {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #e44848;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.stars {
+  margin: 4px 0;
+}
+
+.star {
+  color: #dadde1;
+}
+
+.starActive {
+  color: #ffc531;
+}
+
+.right form {
+  border-radius: 10px;
+}
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ratingText {
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}
+/* Убираем тени и делаем ровные баджи */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 0;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* по макету text-align: center */
+  gap: 8px;
+  padding: 12px 18px;
+  background-color: #f2f4f7;
+  border-radius: 100px;
+}
+
+.badgeText {
+  font-weight: 500; /* Из макета */
+  font-size: 16px; /* Из макета */
+  line-height: 1.5; /* Из макета 150% */
+  color: #101828; /* Твой основной темный цвет */
+  text-transform: capitalize;
+}
+
+.badgeIcon {
+  flex-shrink: 0; /* Чтобы иконку не сжимало */
+  width: 20px;
+  height: 20px;
+}
+
+/* Стили таблицы характеристик */
+.details {
+  list-style: none;
+  padding-top: 24px;
+  margin: 0;
+}
+
+.details li {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 14px;
+  border-bottom: none;
+}
+
+.detailLabel,
+.detailValue {
+  font-weight: 500;
+  font-size: 18px;
+  color: #101828;
+}
+
+.detailValue {
+  text-transform: capitalize;
+}
+
+.subtitle {
+  padding-bottom: 24px;
+  border-bottom: 1px solid #dadde1;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 120%;
+  width: 527px;
+}
+.featuresTab {
+  border-radius: 10px;
+  padding: 44px 80px;
+  width: 631px;
+  min-height: 588px;
+  background: #f7f7f7;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px; /* Отступы между инпутами */
+}
+.form h3 {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  color: #101828;
+}
+
+/* Стили для всех полей ввода и текстовой области */
+.form input,
+.form textarea {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%; /* или 24px */
+  color: #6c717b;
+
+  /* Стили из Figma */
+  background-color: #f7f7f7;
+  border: none;
+  width: 100%;
+  padding: 18px;
+  outline: none;
+}
+
+.form input::placeholder,
+.form textarea::placeholder {
+ 
+  color: rgba(16, 24, 40, 0.6);
+}
+.form textarea {
+  border-radius: 10px; /* Из скрина image_cc093d.png */
+  height: 118px; /* Из скрина image_cc093d.png */
+  resize: none;
+
+}
+/* Стилизация кнопки "Send" */
+.form button {
+  width: 160px; /* Фиксированная ширина как в макете */
+  height: 56px;
+  margin-top: 10px;
+  padding: 16px 60px;
+  background-color: #e44848;
+  color: #ffffff;
+  border: none;
+  border-radius: 200px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  align-self: flex-start; /* Выравнивание по левому краю (или center, если нужно) */
+}
+
+.form button:hover {
+  background-color: #d63d3d;
+}
+
+/* Кастомизация input type="date" */
+.form input[type="date"] {
+  font-family: inherit;
+  cursor: pointer;
+}
+.formP {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #6c717b;
+}
+.formTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  color: #101828;
+}
+.formText {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #475467;
+}

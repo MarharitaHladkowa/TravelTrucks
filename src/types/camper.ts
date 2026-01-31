@@ -16,11 +16,19 @@ export interface Camper {
   rating: number;
   location: string;
   description: string;
-
-  form: "panelTruck" | "fullyIntegrated" | "alcove";
+  radio: boolean;
+  refrigerator: boolean;
+  microwave: boolean;
+  gas: boolean;
+  water: boolean;
   transmission: string;
   engine: string;
-
+  form: string;
+  length: string; // <-- Проверь, чтобы было именно string
+  width: string;
+  height: string;
+  tank: string;
+  consumption: string;
   AC: boolean;
   kitchen: boolean;
   TV: boolean;
