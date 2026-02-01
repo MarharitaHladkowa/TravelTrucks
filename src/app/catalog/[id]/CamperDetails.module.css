@@ -412,37 +412,3 @@
   border-color: #475467 !important;
   border-width: 2px 2px 0 0 !important;
 }
-@media (max-width: 1024px) {
-  .detailsLayout {
-    flex-direction: column; /* Форма бронирования падает под описание */
-    gap: 40px;
-  }
-
-  .formSide {
-    width: 100%; /* Форма растягивается на всю ширину */
-  }
-
-  .gallery {
-    flex-wrap: nowrap;
-    overflow-x: auto; /* Позволяем скроллить фотки вбок на мобилке */
-    padding-bottom: 10px;
-  }
-
-  .imageWrapper {
-    min-width: 250px; /* Чтобы фотки не сжимались в кашу */
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 20px;
-  }
-
-  .title {
-    font-size: 24px;
-  }
-
-  .tabs {
-    gap: 20px;
-  }
-}
