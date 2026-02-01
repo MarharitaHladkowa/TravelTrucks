@@ -1,0 +1,96 @@
+/* Основной контейнер календаря */
+.react-datepicker {
+  border: 1px solid #dadde1 !important;
+  border-radius: 12px !important;
+  font-family: "Inter", sans-serif !important;
+  padding: 20px !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 4px 36px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Шапка календаря */
+.react-datepicker__header {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #dadde1 !important;
+  padding: 0 !important;
+  position: relative !important;
+}
+
+/* Название месяца и года (центр) */
+.react-datepicker__current-month {
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  line-height: 1 !important; /* Убираем лишнюю высоту для точного выравнивания */
+  color: #101828 !important;
+  padding-top: 15px !important;
+  margin-bottom: 25px !important;
+}
+
+/* Кнопки навигации (стрелки) — выставляем на уровень месяца */
+.react-datepicker__navigation {
+  background: transparent !important; /* Убираем красный фон */
+  border: none !important;
+  box-shadow: none !important;
+  top: 12px !important; /* Точное смещение вверх на уровень текста */
+  width: 32px !important;
+  height: 32px !important;
+}
+
+.react-datepicker__navigation--previous {
+  left: 10px !important;
+}
+
+.react-datepicker__navigation--next {
+  right: 10px !important;
+}
+
+/* Иконки стрелок (черные и тонкие) */
+.react-datepicker__navigation-icon::before {
+  border-color: #101828 !important;
+  border-width: 1.5px 1.5px 0 0 !important;
+  width: 8px !important;
+  height: 8px !important;
+}
+
+/* Сетка дней */
+.react-datepicker__day-names {
+  margin-top: 15px !important;
+}
+
+.react-datepicker__day-name {
+  color: #6c727f !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  width: 32px !important;
+  margin: 4px !important;
+}
+
+.react-datepicker__day {
+  width: 32px !important;
+  line-height: 32px !important;
+  margin: 4px !important;
+  color: #101828 !important;
+  font-size: 14px !important;
+}
+
+/* Выбранный день (темный круг) */
+.react-datepicker__day--selected {
+  background-color: #475467 !important;
+  border-radius: 50% !important;
+  color: #ffffff !important;
+}
+
+/* Убираем лишние элементы */
+.react-datepicker__triangle {
+  display: none !important;
+}
+
+/* Ширина инпута (527px) */
+.react-datepicker__input-container {
+  display: block !important;
+  width: 100% !important;
+}
+
+.react-datepicker__input-container input {
+  width: 100% !important;
+}

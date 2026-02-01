@@ -12,6 +12,7 @@
     "axios": "^1.13.3",
     "next": "16.1.5",
     "react": "19.2.3",
+    "react-datepicker": "^9.1.0",
     "react-dom": "19.2.3",
     "zustand": "^5.0.10"
   },

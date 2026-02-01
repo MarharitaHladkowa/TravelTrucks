@@ -49,10 +49,12 @@
 .layout {
   display: flex;
   gap: 40px;
+  align-items: flex-start;
 }
 
 .left {
   width: 641px;
+  min-height: 588px;
 }
 
 .right {
@@ -60,9 +62,11 @@
   border-radius: 10px;
   padding: 44px;
   width: 641px;
-  min-height: 588px;
+
   margin-top: 88px; /* Это опустит форму на уровень начала контента Features */
   align-self: flex-start;
+  height: 588px; /* Устанавливаем четкую высоту для правой колонки с формой */
+  box-sizing: border-box; /* Чтобы padding не увеличивал размер блока */
 }
 
 .tabs {
@@ -104,7 +108,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin: 100px 0;
+  margin: 50px 0;
 }
 
 .badge {
@@ -122,18 +126,39 @@
 .reviewItem {
   display: flex;
   gap: 16px;
-  margin-bottom: 24px;
-}
+  margin-bottom: 44px;
 
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: #475467;
+}
+.reviewName {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  color: #101828;
+}
 .avatar {
-  width: 44px;
-  height: 44px;
+  /* Фиксируем размеры (по макету обычно 60x60) */
+  width: 60px !important;
+  height: 60px !important;
+
+  /* Запрещаем флекс-контейнеру сжимать круг */
+  flex-shrink: 0;
+
+  /* Делаем идеальный круг */
   border-radius: 50%;
-  background: #e44848;
-  color: #fff;
+
+  /* Центрируем букву внутри */
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* Цвета и шрифт по макету */
+  background-color: #f2f4f7; /* Светло-серый фон из макета для отзывов */
+  color: #e44848; /* Красная буква */
+  font-size: 24px;
   font-weight: 600;
 }
 
@@ -236,7 +261,9 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 14px; /* Отступы между инпутами */
+  /* Отступы между инпутами */
+  height: 100%;
+  margin-bottom: 0;
 }
 .form h3 {
   font-size: 20px;
@@ -264,20 +291,18 @@
 
 .form input::placeholder,
 .form textarea::placeholder {
- 
   color: rgba(16, 24, 40, 0.6);
 }
 .form textarea {
   border-radius: 10px; /* Из скрина image_cc093d.png */
   height: 118px; /* Из скрина image_cc093d.png */
   resize: none;
-
 }
 /* Стилизация кнопки "Send" */
 .form button {
   width: 160px; /* Фиксированная ширина как в макете */
   height: 56px;
-  margin-top: 10px;
+  margin-top: 24px;
   padding: 16px 60px;
   background-color: #e44848;
   color: #ffffff;
@@ -287,7 +312,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  align-self: flex-start; /* Выравнивание по левому краю (или center, если нужно) */
+  align-self: center;
 }
 
 .form button:hover {
@@ -316,4 +341,71 @@
   font-size: 16px;
   line-height: 150%;
   color: #475467;
+}
+.submitBtn {
+  align-self: center;
+  cursor: pointer;
+  margin-bottom: 44px;
+}
+.submitBtn:hover {
+  background-color: #d63d3d;
+}
+/* Тот самый недостающий стиль для отступов 14px */
+.inputsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 14px; /* Расстояние между инпутами по макету */
+  margin-top: 24px;
+}
+
+.inputField {
+  width: 527px; /* Из макета image_40e11b.png */
+  height: 60px; /* Из макета image_40e11b.png */
+  padding: 18px; /* Из макета image_40e11b.png */
+  background-color: #f7f7f7;
+  border-radius: 12px; /* Из макета image_40e11b.png */
+  border: none;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box; /* Чтобы padding не раздувал ширину 527px */
+}
+
+.commentArea {
+  width: 527px;
+  height: 118px;
+  padding: 18px;
+  background-color: #f7f7f7;
+  border-radius: 12px;
+  border: none;
+  resize: none;
+  outline: none;
+  box-sizing: border-box;
+}
+/* Растягиваем контейнер и само поле на всю ширину */
+.datePickerContainer {
+  width: 100%;
+}
+
+.datePickerWrapper {
+  width: 100%; /* Растягивает внутренний контейнер DatePicker */
+}
+
+.datePickerWrapper :global(.react-datepicker__input-container) {
+  width: 100%;
+}
+
+.datePickerWrapper :global(.react-datepicker__input-container) input {
+  width: 527px; /* Возвращаем точную ширину из макета */
+  height: 60px; /* Высота из макета */
+}
+.react-datepicker__navigation {
+  background: transparent !important; /* Убирает красный фон */
+  border: none !important;
+  box-shadow: none !important;
+  top: 15px !important;
+}
+
+.react-datepicker__navigation-icon::before {
+  border-color: #475467 !important; /* Серый цвет стрелок по макету */
+  border-width: 2px 2px 0 0 !important;
 }

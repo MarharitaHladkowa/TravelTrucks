@@ -3,23 +3,27 @@ import { persist } from "zustand/middleware";
 import axios from "axios";
 import type { Camper, FilterState } from "../types/camper";
 
+// Ограничение количества карточек на страницу согласно ТЗ
 const LIMIT = 4;
+const BASE_URL = "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers";
+
+// Тип для параметров запроса, чтобы избежать ошибки "Unexpected any"
+type FilterParams = Record<string, string | number | boolean | undefined>;
 
 export const useFilterStore = create<FilterState>()(
   persist(
     (set, get) => ({
+      // --- Состояние (State) ---
       location: "",
       equipment: [],
       vehicleType: "",
-
       campers: [],
       isLoading: false,
-
       page: 1,
       hasMore: true,
-
       favorites: [],
 
+      // --- Действия (Actions) ---
       setLocation: (city) => set({ location: city }),
 
       toggleEquipment: (item) =>
@@ -59,40 +63,63 @@ export const useFilterStore = create<FilterState>()(
             : [...state.favorites, id],
         })),
 
+      // Метод для сборки параметров запроса к API
+      getFilterParams: (pageNumber: number): FilterParams => {
+        const { location, equipment, vehicleType } = get();
+        const params: FilterParams = {
+          page: pageNumber,
+          limit: LIMIT,
+          location: location || undefined,
+          form: vehicleType || undefined,
+        };
+
+        // Логика соответствия фильтров ключам API
+        if (equipment.includes("AC")) params.AC = true;
+        if (equipment.includes("kitchen")) params.kitchen = true;
+        if (equipment.includes("TV")) params.TV = true;
+        if (equipment.includes("bathroom")) params.bathroom = true;
+        if (equipment.includes("automatic")) params.transmission = "automatic";
+
+        return params;
+      },
+
+      // Реализация сброса результатов перед новым поиском
+      searchCampers: async () => {
+        // Сначала очищаем старые данные и ставим страницу 1
+        set({ campers: [], page: 1, hasMore: true });
+
+        const params = get().getFilterParams(1);
+        await get().fetchCampers(params);
+      },
+
       fetchCampers: async (params) => {
-        const { page, campers } = get();
         set({ isLoading: true });
 
         try {
-          const res = await axios.get(
-            "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers",
-            { params },
-          );
+          const res = await axios.get(BASE_URL, { params });
 
           const newItems: Camper[] = Array.isArray(res.data)
             ? res.data
             : res.data?.items || [];
 
-          set({
-            campers: page === 1 ? newItems : [...campers, ...newItems],
+          set((state) => ({
+            campers:
+              params.page === 1 ? newItems : [...state.campers, ...newItems],
             hasMore: newItems.length === LIMIT,
             isLoading: false,
+          }));
+        } catch {
+          set({
+            campers: get().page === 1 ? [] : get().campers,
+            hasMore: false,
+            isLoading: false,
           });
-        } catch (error: unknown) {
-          if (axios.isAxiosError(error) && error.response?.status === 404) {
-            set({
-              campers: page === 1 ? [] : get().campers,
-              hasMore: false,
-              isLoading: false,
-            });
-          } else {
-            set({ isLoading: false });
-          }
         }
       },
     }),
     {
       name: "filter-storage",
+
       partialize: (state) => ({
         favorites: state.favorites,
         location: state.location,
