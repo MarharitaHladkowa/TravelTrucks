@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "TravelTrucks - Camper Rental",
   description: "Rent the camper of your dreams",
+  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({
