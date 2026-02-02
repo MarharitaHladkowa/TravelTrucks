@@ -1,24 +1,24 @@
-# TravelTrucks 🚐
+🚐 TravelTrucks
+TravelTrucks is a modern web platform for renting campers in Ukraine. The project allows users to browse a catalog of available motorhomes, filter them by specific characteristics, view detailed specifications, and book their next road trip adventure.
 
-**TravelTrucks** — это современная веб-платформа для аренды кемперов в Украине. Проект позволяет пользователям просматривать каталог доступных домов на колесах, фильтровать их по характеристикам, просматривать детальную информацию и бронировать поездку.
+🚀 Key Features
+Camper Catalog: Comprehensive list of available vehicles with optimized pagination (4 cards per page).
 
----
+Advanced Filtering: Search by location, body type (Van, Fully Integrated, Alcove), and amenities (AC, Kitchen, TV, Shower, Transmission).
 
-## 🚀 Основные функции
+Favorites System: Users can save preferred campers to a personalized list, with data persistence managed via LocalStorage.
 
-- **Каталог кемперов**: Просмотр списка всех доступных автомобилей с пагинацией (по 4 карточки).
-- **Фильтрация**: Поиск по локации, типу кузова (Van, Fully Integrated, Alcove) и оборудованию (AC, Кухня, TV, Душ, Автоматика).
-- **Избранное**: Возможность сохранять понравившиеся кемперы (данные сохраняются в LocalStorage).
-- **Детальная страница**: Подробное описание, галерея фотографий, отзывы пользователей и технические характеристики.
-- **Форма бронирования**: Интерактивная форма с календарем для выбора даты поездки.
+Detailed Insights: Each camper features a dedicated page with a photo gallery, user reviews, and technical specifications.
 
----
+Interactive Booking: Integrated booking form with a calendar interface for seamless trip planning.
 
-## 🛠 Технологический стек
+🛠 Tech Stack
+Framework: Next.js (App Router) — for optimized performance and SEO.
 
-- **Framework**: [Next.js](https://nextjs.org/) (App Router)
-- **State Management**: [Zustand](https://github.com/pmndrs/zustand) + Persist middleware
-- **Styling**: CSS Modules
-- **HTTP Client**: Axios
-- **Icons**: Lucide React / SVG Icons
-- **UI Components**: React Datepicker
+State Management: Zustand + Persist middleware — for lightweight and efficient state handling.
+
+Styling: CSS Modules — for scoped and maintainable styles.
+
+HTTP Client: Axios — for reliable API communication.
+
+Form Handling: React Datepicker — for an intuitive user experience during booking.
