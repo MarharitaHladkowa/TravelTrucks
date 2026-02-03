@@ -24,7 +24,9 @@ export const useFilterStore = create<FilterState>()(
       favorites: [],
 
       // --- Действия (Actions) ---
-      setLocation: (city) => set({ location: city }),
+
+      // Применяем trim() сразу при вводе локации юзером
+      setLocation: (city) => set({ location: city.trim() }),
 
       toggleEquipment: (item) =>
         set((state) => ({
@@ -66,10 +68,14 @@ export const useFilterStore = create<FilterState>()(
       // Метод для сборки параметров запроса к API
       getFilterParams: (pageNumber: number): FilterParams => {
         const { location, equipment, vehicleType } = get();
+
+        // Применяем trim() перед отправкой, и если строка пустая — шлем undefined
+        const trimmedLocation = location ? location.trim() : "";
+
         const params: FilterParams = {
           page: pageNumber,
           limit: LIMIT,
-          location: location || undefined,
+          location: trimmedLocation || undefined,
           form: vehicleType || undefined,
         };
 
@@ -119,7 +125,6 @@ export const useFilterStore = create<FilterState>()(
     }),
     {
       name: "filter-storage",
-
       partialize: (state) => ({
         favorites: state.favorites,
         location: state.location,
