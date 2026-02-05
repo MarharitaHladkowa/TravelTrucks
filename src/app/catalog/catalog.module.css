@@ -1,3 +1,6 @@
+:root {
+  --font-family: "Inter", sans-serif;
+}
 .catalogContainer {
   max-width: 1440px; /* Фиксируем ширину всего сайта как в Figma */
   margin: 0 auto; /* Центрируем всё содержимое */
@@ -138,6 +141,7 @@
   line-height: 1.5;
   color: #101828;
   outline: none;
+  font-family: var(--font-family);
 }
 
 .filterTitle {

@@ -6,6 +6,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "TravelTrucks — Camper Rental",
+  icons: {
+    icon: "/favicon.ico.png",
+  },
   description:
     "Modern platform for renting campers in Ukraine. Browse our catalog and book your next adventure!",
   openGraph: {

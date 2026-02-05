@@ -1,3 +1,6 @@
+:root {
+  --font-family: "Inter", sans-serif;
+}
 .container {
   max-width: 1440px;
   margin: 0 auto;
@@ -298,22 +301,6 @@
   height: 118px; /* Из скрина image_cc093d.png */
   resize: none;
 }
-/* Стилизация кнопки "Send" */
-.form button {
-  width: 160px; /* Фиксированная ширина как в макете */
-  height: 56px;
-  margin-top: 24px;
-  padding: 16px 60px;
-  background-color: #e44848;
-  color: #ffffff;
-  border: none;
-  border-radius: 200px;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  align-self: center;
-}
 
 .form button:hover {
   background-color: #d63d3d;
@@ -343,9 +330,31 @@
   color: #475467;
 }
 .submitBtn {
+  /* Базовые размеры и отступы */
+  width: 160px;
+  height: 56px;
+  padding: 16px 60px;
+  margin-top: 24px;
+  margin-bottom: 44px; /* Твой специфичный отступ снизу */
+
+  /* Позиционирование */
   align-self: center;
+  display: block; /* Чтобы align-self точно сработал, если кнопка во flex-контейнере */
+
+  /* Дизайн и цвета */
+  background-color: #e44848;
+  color: #ffffff;
+  border: none;
+  border-radius: 200px;
+
+  /* Типографика */
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 500;
+
+  /* Интерактив */
   cursor: pointer;
-  margin-bottom: 44px;
+  transition: background-color 0.2s ease;
 }
 .submitBtn:hover {
   background-color: #d63d3d;
@@ -380,6 +389,7 @@
   resize: none;
   outline: none;
   box-sizing: border-box;
+  font-family: var(--font-family);
 }
 /* Растягиваем контейнер и само поле на всю ширину */
 .datePickerContainer {

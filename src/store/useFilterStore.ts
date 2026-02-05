@@ -3,17 +3,14 @@ import { persist } from "zustand/middleware";
 import axios from "axios";
 import type { Camper, FilterState } from "../types/camper";
 
-// Ограничение количества карточек на страницу согласно ТЗ
 const LIMIT = 4;
 const BASE_URL = "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers";
 
-// Тип для параметров запроса, чтобы избежать ошибки "Unexpected any"
 type FilterParams = Record<string, string | number | boolean | undefined>;
 
 export const useFilterStore = create<FilterState>()(
   persist(
     (set, get) => ({
-      // --- Состояние (State) ---
       location: "",
       equipment: [],
       vehicleType: "",
@@ -23,9 +20,6 @@ export const useFilterStore = create<FilterState>()(
       hasMore: true,
       favorites: [],
 
-      // --- Действия (Actions) ---
-
-      // Применяем trim() сразу при вводе локации юзером
       setLocation: (city) => set({ location: city.trim() }),
 
       toggleEquipment: (item) =>
@@ -65,11 +59,9 @@ export const useFilterStore = create<FilterState>()(
             : [...state.favorites, id],
         })),
 
-      // Метод для сборки параметров запроса к API
       getFilterParams: (pageNumber: number): FilterParams => {
         const { location, equipment, vehicleType } = get();
 
-        // Применяем trim() перед отправкой, и если строка пустая — шлем undefined
         const trimmedLocation = location ? location.trim() : "";
 
         const params: FilterParams = {
@@ -78,8 +70,6 @@ export const useFilterStore = create<FilterState>()(
           location: trimmedLocation || undefined,
           form: vehicleType || undefined,
         };
-
-        // Логика соответствия фильтров ключам API
         if (equipment.includes("AC")) params.AC = true;
         if (equipment.includes("kitchen")) params.kitchen = true;
         if (equipment.includes("TV")) params.TV = true;
@@ -89,9 +79,7 @@ export const useFilterStore = create<FilterState>()(
         return params;
       },
 
-      // Реализация сброса результатов перед новым поиском
       searchCampers: async () => {
-        // Сначала очищаем старые данные и ставим страницу 1
         set({ campers: [], page: 1, hasMore: true });
 
         const params = get().getFilterParams(1);

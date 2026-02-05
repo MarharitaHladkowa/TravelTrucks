@@ -1,12 +1,12 @@
 .header {
-  padding: 24px 64px; /* Точно как на image_31d3d0.png */
+  padding: 24px 64px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #f7f7f7;
-  border-bottom: 1px solid #dadde1; /* Цвет визуально ближе к макету */
-  height: 72px; /* Фиксированная высота из макета */
-  position: relative; /* Чтобы абсолютное позиционирование .nav работало корректно */
+  border-bottom: 1px solid #dadde1;
+  height: 72px;
+  position: relative;
 }
 
 .nav {
@@ -20,23 +20,21 @@
 .link {
   font-weight: 500;
   font-size: 16px;
-  line-height: 1.5; /* Это те самые 150% из макета */
+  line-height: 1.5;
   color: #101828;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .activeLink {
-  color: #e44848; /* Акцентный красный из ТЗ */
+  color: #e44848;
 }
 
 .link:hover {
-  color: #d84343; /* Используем var(--button-hover) */
+  color: #d84343;
 }
 
 .logo {
-  /* Логотип обычно имеет специфический шрифт, 
-     но размеры оставляем по макету */
   font-size: 24px;
   font-weight: 600;
   color: #101828;

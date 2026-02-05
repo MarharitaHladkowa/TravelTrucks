@@ -15,7 +15,7 @@ const EQUIPMENT = [
 ];
 
 const VEHICLE_TYPES = [
-  { id: "van", label: "Van", icon: "/icons/bi_grid-1x2.svg" },
+  { id: "panelTruck", label: "Van", icon: "/icons/bi_grid-1x2.svg" },
   {
     id: "fullyIntegrated",
     label: "Fully Integrated",

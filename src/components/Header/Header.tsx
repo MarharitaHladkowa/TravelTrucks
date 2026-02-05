@@ -27,8 +27,6 @@ export const Header = () => {
           Catalog
         </Link>
       </nav>
-
-      {/* Пустой блок для симметрии */}
       <div style={{ width: "150px" }}></div>
     </header>
   );
