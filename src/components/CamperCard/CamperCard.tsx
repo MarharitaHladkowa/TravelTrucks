@@ -39,23 +39,23 @@ export const CamperCard = ({ camper }: Props) => {
 
   return (
     <div className={styles.card}>
+      {/* Возвращаем блок с картинкой, который использует imageSrc */}
       <div className={styles.imageWrapper}>
         <Image
           src={imageSrc}
           alt={camper.name}
           fill
-          sizes="290px"
+          sizes="(max-width: 768px) 100vw, 290px"
           className={styles.image}
+          priority={false}
         />
       </div>
 
       <div className={styles.info}>
         <div className={styles.header}>
           <h2 className={styles.name}>{camper.name}</h2>
-
           <div className={styles.priceWrapper}>
             <span className={styles.price}>€{camper.price.toFixed(2)}</span>
-
             <button
               type="button"
               className={styles.favoriteBtn}
@@ -71,37 +71,39 @@ export const CamperCard = ({ camper }: Props) => {
           </div>
         </div>
 
-        <div className={styles.meta}>
-          <span className={styles.metaItem}>
+        <ul className={styles.meta}>
+          <li className={styles.metaItem}>
             <Image src="/icons/star.svg" alt="Rating" width={16} height={16} />
-            {camper.rating} ({camper.reviews.length} Reviews)
-          </span>
-
-          <span className={styles.metaItem}>
+            <span className={styles.ratingText}>
+              {camper.rating} ({camper.reviews.length} Reviews)
+            </span>
+          </li>
+          <li className={styles.metaItem}>
             <Image src="/icons/map.svg" alt="Location" width={16} height={16} />
             {camper.location}
-          </span>
-        </div>
+          </li>
+        </ul>
 
         <p className={styles.description}>{camper.description}</p>
 
-        <div className={styles.categories}>
+        <ul className={styles.categories}>
           {activeFeatures.slice(0, 6).map((key) => {
             const value = camper[key as keyof Camper];
-
             return (
-              <div key={key} className={styles.categoryTag}>
+              <li key={key} className={styles.categoryTag}>
                 <Image
                   src={FEATURE_ICONS[key]}
                   alt={key}
                   width={20}
                   height={20}
                 />
-                <span>{typeof value === "string" ? value : key}</span>
-              </div>
+                <span className={styles.tagText}>
+                  {typeof value === "string" ? value : key}
+                </span>
+              </li>
             );
           })}
-        </div>
+        </ul>
 
         <Link href={`/catalog/${camper.id}`} className="button-primary">
           Show more

@@ -46,22 +46,26 @@ export default function CamperDetailsPage() {
       <p className={styles.price}>€{camper.price.toFixed(2)}</p>
 
       {/* ✅ ГАЛЕРЕЯ */}
-      <div className={styles.gallery}>
-        {camper.gallery.slice(0, 4).map((img, idx) => {
+      <ul className={styles.gallery}>
+        {camper.gallery.slice(0, 3).map((img, idx) => {
+          // slice(0, 3) лучше для сетки 1440px
           const item = img as GalleryItem;
           const imgSrc: string = typeof img === "object" ? item.original : img;
+
           return (
-            <Image
-              key={idx}
-              src={imgSrc}
-              alt={camper.name}
-              width={300}
-              height={200}
-              priority={idx === 0}
-            />
+            <li key={idx} className={styles.galleryItem}>
+              <Image
+                src={imgSrc}
+                alt={camper.name}
+                width={292}
+                height={312}
+                className={styles.galleryImage}
+                priority={idx === 0}
+              />
+            </li>
           );
         })}
-      </div>
+      </ul>
 
       <p className={styles.description}>{camper.description}</p>
 
@@ -69,20 +73,24 @@ export default function CamperDetailsPage() {
       <div className={styles.layout}>
         <div className={styles.left}>
           {/* Tabs */}
-          <div className={styles.tabs}>
-            <button
-              className={activeTab === "features" ? styles.activeTab : ""}
-              onClick={() => setActiveTab("features")}
-            >
-              Features
-            </button>
-            <button
-              className={activeTab === "reviews" ? styles.activeTab : ""}
-              onClick={() => setActiveTab("reviews")}
-            >
-              Reviews
-            </button>
-          </div>
+          <ul className={styles.tabs}>
+            <li>
+              <button
+                className={activeTab === "features" ? styles.activeTab : ""}
+                onClick={() => setActiveTab("features")}
+              >
+                Features
+              </button>
+            </li>
+            <li>
+              <button
+                className={activeTab === "reviews" ? styles.activeTab : ""}
+                onClick={() => setActiveTab("reviews")}
+              >
+                Reviews
+              </button>
+            </li>
+          </ul>
 
           {activeTab === "features" && <Features camper={camper} />}
           {activeTab === "reviews" && <Reviews reviews={camper.reviews} />}

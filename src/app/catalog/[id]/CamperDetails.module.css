@@ -27,17 +27,22 @@
 }
 
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  display: flex;
+  gap: 48px;
   margin: 28px 0;
 }
-
-.gallery img {
-  height: 300px;
-  width: 100%;
-  object-fit: cover;
+.galleryItem {
+  width: 292px;
+  height: 312px;
+  flex-shrink: 0;
   border-radius: 10px;
+  overflow: hidden;
+}
+.galleryImage {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block;
 }
 
 .description {
@@ -92,6 +97,7 @@
   padding: 10px 0 24px 0;
   color: #101828;
   position: relative;
+  font-family: var(--font-family);
 }
 
 .activeTab {

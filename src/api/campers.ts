@@ -5,7 +5,6 @@ const API_URL =
   process.env.NEXT_PUBLIC_API_URL ||
   "https://66b1f8e71ca8ad33d4f5f63e.mockapi.io/campers";
 
-// Описываем, что функция возвращает промис с объектом, где есть массив Camper
 export const getCampers = async (
   page: number,
   filters = {},

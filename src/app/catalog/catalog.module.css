@@ -186,7 +186,7 @@
 .categoryItem p {
   font-size: 16px;
   font-weight: 500;
-  line-height: 20px;
+  line-height: 150%;
   color: #101828;
   margin: 0;
   text-align: center;

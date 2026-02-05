@@ -1,22 +1,16 @@
-/* Подключение шрифта Inter (стандарт для Next.js) */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
-
 :root {
-  /* Цвета из твоего макета и ТЗ */
-  --main-color: #101828; /* Темный текст */
-  --secondary-color: #475467; /* Серый текст */
-  --accent-color: #e44848; /* Красный (кнопки, активные ссылки) */
-  --button-hover: #d84343; /* Красный темнее для ховера */
-  --bg-color: #f7f7f7; /* Фон секций */
-  --white: #ffffff; /* Чистый белый */
-  --inputs-bg: #f2f4f7; /* Фон полей ввода */
-  --border-color: #dadde1; /* Цвет линий и границ */
-
-  /* Ширина из Figma */
+  --font-family: var(--font-inter), sans-serif;
+  --main-color: #101828;
+  --secondary-color: #475467;
+  --accent-color: #e44848;
+  --button-hover: #d84343;
+  --bg-color: #f7f7f7;
+  --white: #ffffff;
+  --inputs-bg: #f2f4f7;
+  --border-color: #dadde1;
   --desktop-width: 1440px;
 }
 
-/* Базовый сброс стилей (Reset) */
 * {
   box-sizing: border-box;
   margin: 0;

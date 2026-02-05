@@ -20,7 +20,7 @@ const featuresConfig = [
 export function Features({ camper }: { camper: Camper }) {
   return (
     <div className={styles.featuresTab}>
-      <div className={styles.badges}>
+      <ul className={styles.badges}>
         {featuresConfig.map((item) => {
           const value = camper[item.key as keyof Camper];
           if (!value) return null;
@@ -28,7 +28,7 @@ export function Features({ camper }: { camper: Camper }) {
           const displayLabel = typeof value === "string" ? value : item.label;
 
           return (
-            <div key={item.key} className={styles.badge}>
+            <li key={item.key} className={styles.badge}>
               <Image
                 src={`/icons/${item.icon}.svg`}
                 width={20}
@@ -37,10 +37,10 @@ export function Features({ camper }: { camper: Camper }) {
                 className={styles.badgeIcon}
               />
               <span className={styles.badgeText}>{String(displayLabel)}</span>
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ul>
 
       <h3 className={styles.subtitle}>Vehicle details</h3>
 

@@ -105,9 +105,9 @@ export default function CatalogPage() {
           </div>
           <p className={styles.filterTitle}>Filters</p>
           <h3 className={styles.sectionTitle}>Vehicle equipment</h3>
-          <div className={styles.categoriesGrid}>
+          <ul className={styles.categoriesGrid}>
             {EQUIPMENT.map((item) => (
-              <div
+              <li
                 key={item.id}
                 className={`${styles.categoryItem} ${
                   equipment.includes(item.id) ? styles.active : ""
@@ -122,14 +122,15 @@ export default function CatalogPage() {
                   style={{ height: "auto" }}
                 />
                 <p>{item.label}</p>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
 
           <h3 className={styles.sectionTitle}>Vehicle type</h3>
-          <div className={styles.categoriesGrid}>
+
+          <ul className={styles.categoriesGrid}>
             {VEHICLE_TYPES.map((type) => (
-              <div
+              <li
                 key={type.id}
                 className={`${styles.categoryItem} ${
                   vehicleType === type.id ? styles.active : ""
@@ -144,9 +145,9 @@ export default function CatalogPage() {
                   style={{ height: "auto" }}
                 />
                 <p>{type.label}</p>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
 
           <button className={styles.searchBtn} onClick={handleSearch}>
             Search
@@ -154,12 +155,14 @@ export default function CatalogPage() {
         </aside>
 
         <section className={styles.content}>
-          <div className={styles.list}>
+          <ul className={styles.list}>
             {Array.isArray(campers) &&
               campers.map((camper) => (
-                <CamperCard key={camper.id} camper={camper} />
+                <li key={camper.id}>
+                  <CamperCard camper={camper} />
+                </li>
               ))}
-          </div>
+          </ul>
 
           {isLoading && <p>Loading...</p>}
           {!isLoading && campers.length === 0 && (
