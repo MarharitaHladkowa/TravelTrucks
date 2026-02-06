@@ -116,6 +116,11 @@ export const useFilterStore = create<FilterState>()(
       partialize: (state) => ({
         favorites: state.favorites,
         location: state.location,
+        campers: state.campers,
+        page: state.page,
+        hasMore: state.hasMore,
+        equipment: state.equipment,
+        vehicleType: state.vehicleType,
       }),
     },
   ),

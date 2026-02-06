@@ -39,44 +39,27 @@ export default function CatalogPage() {
     setVehicleType,
 
     fetchCampers,
-    resetCampers,
-    resetPage,
+    getFilterParams,
+    searchCampers,
     nextPage,
   } = useFilterStore();
 
   useEffect(() => {
-    fetchCampers({ page: 1, limit: 4 });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (campers.length === 0) {
+      const params = getFilterParams(1);
+      fetchCampers(params);
+    }
   }, []);
 
-  const buildParams = (
-    pageNumber: number,
-  ): Record<string, string | number | boolean | undefined> => {
-    const params: Record<string, string | number | boolean | undefined> = {
-      page: pageNumber,
-      limit: 4,
-      location: location || undefined,
-      form: vehicleType || undefined,
-    };
-
-    if (equipment.includes("AC")) params.AC = true;
-    if (equipment.includes("kitchen")) params.kitchen = true;
-    if (equipment.includes("TV")) params.TV = true;
-    if (equipment.includes("bathroom")) params.bathroom = true;
-    if (equipment.includes("automatic")) params.transmission = "automatic";
-
-    return params;
-  };
-
   const handleSearch = async () => {
-    resetCampers();
-    resetPage();
-    await fetchCampers(buildParams(1));
+    await searchCampers();
   };
 
   const handleLoadMore = async () => {
+    const nextP = page + 1;
     nextPage();
-    await fetchCampers(buildParams(page + 1));
+    const params = getFilterParams(nextP);
+    await fetchCampers(params);
   };
 
   return (
@@ -96,6 +79,7 @@ export default function CatalogPage() {
                 className={styles.mapIcon}
               />
               <input
+                id="location"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 placeholder="City"
@@ -103,6 +87,7 @@ export default function CatalogPage() {
               />
             </div>
           </div>
+
           <p className={styles.filterTitle}>Filters</p>
           <h3 className={styles.sectionTitle}>Vehicle equipment</h3>
           <ul className={styles.categoriesGrid}>
@@ -127,7 +112,6 @@ export default function CatalogPage() {
           </ul>
 
           <h3 className={styles.sectionTitle}>Vehicle type</h3>
-
           <ul className={styles.categoriesGrid}>
             {VEHICLE_TYPES.map((type) => (
               <li
@@ -164,7 +148,8 @@ export default function CatalogPage() {
               ))}
           </ul>
 
-          {isLoading && <p>Loading...</p>}
+          {isLoading && <p className={styles.loading}>Loading...</p>}
+
           {!isLoading && campers.length === 0 && (
             <p className={styles.emptyText}>Nothing found</p>
           )}

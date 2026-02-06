@@ -428,3 +428,19 @@
   border-color: #475467 !important;
   border-width: 2px 2px 0 0 !important;
 }
+.errorText {
+  color: #d84343; /* Красный цвет для текста ошибки */
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
+.inputError {
+  border-color: #d84343 !important; /* Красная рамка для поля */
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
